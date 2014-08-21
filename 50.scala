@@ -1,40 +1,25 @@
 
-
 def isPrime(i: Int): Boolean =
     if (i <= 1) false
     else if (i <= 3) true
     else (2 until math.sqrt(i).toInt + 1).forall(i % _ != 0)
 
-val limit = 10000
-val primes = (2 to limit).filter(isPrime)
+val limit = 1000000
+val primes = (2 to limit).filter(isPrime).toList
 val primesLookup = primes.toSet
 
-
-
-
-def primSums(ps: List[Int], acc: Int, len: Int): List[(Int, Int)] = {
-    if (acc > limit) Nil
-    else if (ps.isEmpty) Nil
-    else {
-        if (primesLookup.contains(acc) && len > 1) (acc, len) +: primSums(ps.tail, acc + ps.head, len + 1)
-        else primSums(ps.tail, acc + ps.head, len + 1)
-
-    }
-
-}
-
-
-def findPrimSums(primes: List[Int]): List[(Int, Int)] = {
+def maxPrimSum(ps: List[Int]) = 
+    ps.scanLeft(0)(_ + _).takeWhile(_ < limit)
+                         .zipWithIndex
+                         .filter(t => primesLookup.contains(t._1))
+                         .maxBy(_._2)
+                         
+def findPrimSums(primes: List[Int], acc: Seq[(Int, Int)]): Seq[(Int, Int)] = {
      primes match {
-        case Nil => Nil
-        case ps => findPrimSums(ps.tail) ++ primSums(ps, 0, 0)
+        case Nil => acc
+        case ps => findPrimSums(ps.tail, acc :+ maxPrimSum(ps))
     }
 }
 
-
-
-val res = findPrimSums(primes.toList)
-println(res.sortBy(_._2))
-
-
+println(findPrimSums(primes, List()).maxBy(_._2))
 
