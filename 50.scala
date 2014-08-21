@@ -21,5 +21,5 @@ def findPrimSums(primes: List[Int], acc: Seq[(Int, Int)]): Seq[(Int, Int)] = {
     }
 }
 
-println(findPrimSums(primes, List()).maxBy(_._2))
+println(findPrimSums(primes.take(1000), List()).maxBy(_._2))
 
