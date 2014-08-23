@@ -3,7 +3,7 @@ package euler
 object Euler099 extends Euler {
 
 
-    val input = scala.io.Source.fromFile("p099_base_exp.txt")
+    val input = scala.io.Source.fromFile("data/p099_base_exp.txt")
 
     val res = input.getLines
                    .map(_.split(",")
