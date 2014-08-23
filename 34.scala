@@ -1,5 +1,8 @@
 package euler
 
+import Tools.digits
+
+
 object Euler034 extends Euler {
 
 
@@ -8,9 +11,6 @@ object Euler034 extends Euler {
        else n * factorial(n - 1)
 
     val factMap = (0 to 9).map(n => n -> factorial(n)).toMap
-
-    def digits(n: Int) =
-        n.toString.map(_.asDigit)
 
     val res = for {
                    n <- (3 until 100000)
