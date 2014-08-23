@@ -2,8 +2,7 @@
 package euler
 
 
-object Euler050 {
-
+object Euler050 extends Euler{
 
     def isPrime(i: Int): Boolean =
         if (i <= 1) false
@@ -14,12 +13,12 @@ object Euler050 {
     val primes = (2 to limit).filter(isPrime).toList
     val primesLookup = primes.toSet
 
-    def maxPrimSum(ps: List[Int]) = 
+    def maxPrimSum(ps: List[Int]) =
         ps.scanLeft(0)(_ + _).takeWhile(_ < limit)
                              .zipWithIndex
                              .filter(t => primesLookup.contains(t._1))
                              .maxBy(_._2)
-                             
+
     def findPrimSums(primes: List[Int], acc: Seq[(Int, Int)]): Seq[(Int, Int)] = {
          primes match {
             case Nil => acc
@@ -27,7 +26,6 @@ object Euler050 {
         }
     }
 
-    println(findPrimSums(primes.take(1000), List()).maxBy(_._2))
-
+    val result = findPrimSums(primes.take(1000), List()).maxBy(_._2)
 
 }

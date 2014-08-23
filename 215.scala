@@ -1,10 +1,8 @@
 
-
 package euler
 
 
-object Euler215 {
-    
+object Euler215 extends Euler {
 
     def getLayers(width: Int) = {
 
@@ -21,7 +19,6 @@ object Euler215 {
 
         rec(width, List())
     }
-
 
     def countWalls(width: Int, height: Int) = {
 
@@ -50,8 +47,5 @@ object Euler215 {
         rec(height, layers.map(_ -> BigInt(1)))
     }
 
-
-    println(countWalls(32, 10))
-    //println(countWalls(32, 10))
-
+    val result = countWalls(32, 10)
 }

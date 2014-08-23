@@ -1,7 +1,7 @@
 
 package euler
 
-object Euler039 {
+object Euler039 extends Euler {
 
     val result = (for {
             perimeter <- 120 to 1000

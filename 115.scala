@@ -3,7 +3,7 @@ package euler
 import Memoize._
 
 
-object Euler115 {
+object Euler115 extends Euler{
 
     def countPermutations(minw: Int, width: Int) = {
 
@@ -18,11 +18,8 @@ object Euler115 {
         rec(width, 0)
     }
 
-    def main(args: Array[String]) {
-        val m = 50
-        val limit = 1000000
-        println((0 to 1000).find(n => countPermutations(m, n) > limit))
-
-    }
+    val m = 50
+    val limit = 1000000
+    val result = (0 to 1000).find(n => countPermutations(m, n) > limit)
 }
 

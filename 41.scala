@@ -2,7 +2,6 @@ package euler
 
 object Euler041 extends Euler {
 
-
   def isNPandigital(n: Int) = {
     val s = n.toString
     s.sorted == "123456789".substring(0, s.size)
@@ -15,6 +14,5 @@ object Euler041 extends Euler {
 
 
   val result = (100001 to 10000000 by 2).filter(isPrime).filter(isNPandigital).max
-
 
 }

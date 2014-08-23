@@ -2,7 +2,7 @@
 package euler
 
 
-object Euler035 {
+object Euler035 extends Euler{
 
     def isPrime(i: Int): Boolean =
       if (i <= 1) false
@@ -22,6 +22,6 @@ object Euler035 {
     val n = 1000000
 
     val res = (2 to n).filter(isCircularPrime(_))
-    println(res.size)
+    val result = res.size
 
 }

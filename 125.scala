@@ -1,13 +1,10 @@
 
 package euler
 
-
-object Euler125 {
-
+object Euler125 extends Euler{
 
     def isPalindrom(s: String): Boolean = s == s.reverse
     val n = 100000000
-
 
     def foo(current: Int, acc:BigInt, len:Int): List[BigInt] = {
         if (acc > n) Nil
@@ -18,8 +15,6 @@ object Euler125 {
 
     val res = (1 to math.sqrt(n).toInt).flatMap(n => foo(n, 0, 0)).toList.distinct
 
-
-    println(res.size)
-    println(res.sum)
+    val result = res.sum
 
 }

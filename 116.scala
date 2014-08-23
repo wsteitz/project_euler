@@ -3,7 +3,7 @@ package euler
 import Memoize._
 
 
-object Euler116 {
+object Euler116 extends Euler{
 
     def countPermutations(width: Int, b: Int) = {
 
@@ -19,10 +19,7 @@ object Euler116 {
         rec(width)
     }
 
-    def main(args: Array[String]) {
-        val width = 50
-        val res = (2 to 4).map(countPermutations(width, _)).sum - 3
-        println(res)
-    }
+    val width = 50
+    val result = (2 to 4).map(countPermutations(width, _)).sum - 3
 }
 
