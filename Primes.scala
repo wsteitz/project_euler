@@ -19,7 +19,8 @@ object Primes {
         else if (n % ps.head == 0) ps.head :: rec(n / ps.head, ps)
         else rec(n, ps.tail)
 
-    rec(number, primes)
+    if (number == 1) Seq(number)
+    else rec(number, primes)
   }
 
 

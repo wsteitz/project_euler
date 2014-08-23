@@ -1,11 +1,9 @@
 package euler
 
-object Euler037 extends Euler {
+import Primes.isPrime
 
-    def isPrime(i: Int): Boolean =
-      if (i <= 1) false
-      else if (i <= 3) true
-      else (2 until math.sqrt(i).toInt + 1).forall(i % _ != 0)
+
+object Euler037 extends Euler {
 
     def truncations(i: Int) =
         (1 to i.toString.size).flatMap(multiplier => {
