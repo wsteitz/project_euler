@@ -1,4 +1,8 @@
-val input = """
+package euler
+
+object Euler018 extends Euler{
+
+    val input = """
 75
 95 64
 17 47 82
@@ -16,16 +20,15 @@ val input = """
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23"""
 
 
-val data = input.trim.split("\n").map(_.split(" ").map(_.toInt).toList).reverse.toList
+    val data = input.trim.split("\n").map(_.split(" ").map(_.toInt).toList).reverse.toList
 
+    def doit(d: List[List[Int]], acc: List[Int]): Int = {
+        if (d.head.size == 1)
+            d.head.head + acc.head
+        else 
+            doit(d.tail, d.head.zip(acc).map(t => t._1 + t._2).sliding(2).toList.map(_.max))
+    }
 
-def doit(d: List[List[Int]], acc: List[Int]): Int = {
-    if (d.head.size == 1)
-        d.head.head + acc.head
-    else 
-        doit(d.tail, d.head.zip(acc).map(t => t._1 + t._2).sliding(2).toList.map(_.max))
+    val result = doit(data, List.fill(data.size)(0))
+
 }
-
-
-val res = doit(data, List.fill(data.size)(0))
-println(res)

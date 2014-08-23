@@ -1,9 +1,11 @@
+package euler
 
-val ns = 2 to 100
+object Euler029 extends Euler{
 
-val res = (for {
-                a <- ns
-                b <- ns
-            } yield BigInt(a).pow(b)).distinct.sorted
+    val ns = 2 to 100
 
-println(res.size)
+    val result = (for {
+                    a <- ns
+                    b <- ns
+                } yield BigInt(a).pow(b)).distinct.sorted.size
+}

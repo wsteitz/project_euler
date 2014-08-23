@@ -1,18 +1,19 @@
+object Euler112 {
 
 
-def isBouncy(n: Int): Boolean = {
-    val s = n.toString
-    s != s.sorted && s != s.sorted.reverse
+    def isBouncy(n: Int): Boolean = {
+        val s = n.toString
+        s != s.sorted && s != s.sorted.reverse
+    }
+
+
+    def check(n: Int, count: Int): Unit = {
+        if ((count.toDouble / n) >= 0.99) println(n)
+        else check(n + 1, count + (if (isBouncy(n + 1)) 1 else 0))
+    }
+      
+      
+    check(1, 0)
+
+
 }
-
-
-def check(n: Int, count: Int): Unit = {
-    if ((count.toDouble / n) >= 0.99) println(n)
-    else check(n + 1, count + (if (isBouncy(n + 1)) 1 else 0))
-}
-  
-  
-check(1, 0)
-
-
-
