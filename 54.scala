@@ -1,7 +1,5 @@
 package euler
 
-import Tools.binomialCoefficient
-
 
 case class Hand(cards: List[String]) {
 
