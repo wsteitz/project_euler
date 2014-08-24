@@ -6,8 +6,8 @@ import Memoize._
 
 object Euler081 extends Euler {
 
-   def input = scala.io.Source.fromFile("data/p081_matrix.txt")
-   def matrix = input.getLines.map(_.split(",").map(_.toInt).toArray).toArray
+   val input = scala.io.Source.fromFile("data/p081_matrix.txt")
+   val matrix = input.getLines.map(_.split(",").map(_.toInt).toArray).toArray
 
     lazy val rec: (Int, Int) => Int = memoize{
       (i, j) =>
@@ -24,16 +24,16 @@ object Euler081 extends Euler {
 object Euler081b extends Euler {
    import Graphs._
 
-   def input = scala.io.Source.fromFile("data/p081_matrix.txt")
-   def matrix = input.getLines.map(_.split(",").map(_.toInt).toArray).toArray
+   val input = scala.io.Source.fromFile("data/p081_matrix.txt")
+   val matrix = input.getLines.map(_.split(",").map(_.toInt).toArray).toArray
 
    val root = (-1, -1)
    val edges = Edge(root, (0, 0), matrix(0)(0)) +:
         (for {
-       i <- 0 until matrix.head.size
+       i <- 0 until matrix.size
        j <- 0 until matrix.size
        offset <- List((1, 0), (0, 1))
-       if i + offset._1 < matrix.head.size &&
+       if i + offset._1 < matrix.size &&
           j + offset._2 < matrix.size
    } yield Edge((i, j), (i + offset._1, j + offset._2),
                 matrix(i + offset._1)(j + offset._2)))

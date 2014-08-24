@@ -6,8 +6,8 @@ import Memoize._
 
 object Euler082 extends Euler {
 
-   def input = scala.io.Source.fromFile("data/p082_matrix.txt")
-   def matrix = input.getLines.map(_.split(",").map(_.toInt).toArray).toArray
+   val input = scala.io.Source.fromFile("data/p082_matrix.txt")
+   val matrix = input.getLines.map(_.split(",").map(_.toInt).toArray).toArray
 
     lazy val rec: (Int, Int, Int) => Int = memoize{
       (i, j, k) =>
@@ -28,8 +28,8 @@ object Euler082 extends Euler {
 object Euler082b extends Euler {
    import Graphs._
 
-   def input = scala.io.Source.fromFile("data/p082_matrix.txt")
-   def matrix = input.getLines.map(_.split(",").map(_.toInt).toArray).toArray
+   val input = scala.io.Source.fromFile("data/p082_matrix.txt")
+   val matrix = input.getLines.map(_.split(",").map(_.toInt).toArray).toArray
 
    val root = (-1, -1)
    val exit = (-2, -2)

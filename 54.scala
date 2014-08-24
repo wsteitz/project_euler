@@ -56,7 +56,7 @@ case class Hand(cards: List[String]) {
 object Euler054 extends Euler {
 
    def input = scala.io.Source.fromFile("data/p054_poker.txt")
-   def hands = input.getLines.map(_.split(" ")
+   val hands = input.getLines.map(_.split(" ")
                                    .toList
                                    .grouped(5)
                                    .toList)
