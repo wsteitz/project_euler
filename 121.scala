@@ -22,5 +22,4 @@ object Euler121 extends Euler {
     }
 
     val result = (1 / chanceOfLoss(15)).toInt
-
 }
