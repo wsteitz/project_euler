@@ -3,8 +3,11 @@ package euler
 
 abstract class Euler {
 
-    def timingToString(t: Long) =
-        t / 1e6 + "ms"
+    def timingToString(t: Long) = {
+        val td = t / 1e6
+        if (td < 1000) td + "ms"
+        else td / 1000 + "s"
+    }
 
     // used to time functions
     def time(fun: => Unit) = {

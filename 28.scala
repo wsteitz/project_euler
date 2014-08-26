@@ -1,11 +1,10 @@
 
-
 package euler
 
 
 object Euler028 extends Euler{
 
-    def nextPos(pos: (Int, Int), dir: String) = 
+    def nextPos(pos: (Int, Int), dir: String) =
         if (dir == "right")
             (pos._1, pos._2 + 1)
         else if (dir == "down")
@@ -14,9 +13,9 @@ object Euler028 extends Euler{
             (pos._1, pos._2 - 1)
         else
             (pos._1 - 1, pos._2)
-            
 
-    def nextDir(dir: String) = 
+
+    def nextDir(dir: String) =
         if (dir == "right")
             "down"
         else if (dir == "down")
@@ -25,9 +24,9 @@ object Euler028 extends Euler{
             "up"
         else
            "right"
-           
-           
-    def prevDir(dir: String) = 
+
+
+    def prevDir(dir: String) =
         if (dir == "right")
             "up"
         else if (dir == "down")
@@ -36,20 +35,19 @@ object Euler028 extends Euler{
             "down"
         else
            "left"
-        
+
 
 
     def populate(pos: (Int, Int), i: Int, dir: String): Unit =
         if (i <= n * n) {
-            pos match { case (x, y) => 
+            pos match { case (x, y) =>
                 matrix(x)(y) = i
-                
+
                 val next_pos = nextPos(pos, dir)
                 if (matrix(next_pos._1)(next_pos._2) == 0)
                     populate(next_pos, i + 1, nextDir(dir))
                 else
                     populate(nextPos(pos, prevDir(dir)), i + 1, dir)
-            
             }
         }
 
