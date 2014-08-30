@@ -1,14 +1,9 @@
 package euler
 
-import Tools.digits
+import Tools.{digits, factorial}
 
 
 object Euler034 extends Euler {
-
-
-    def factorial(n: Int): Int =
-       if (n <= 1) 1
-       else n * factorial(n - 1)
 
     val factMap = (0 to 9).map(n => n -> factorial(n)).toMap
 
