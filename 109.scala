@@ -9,14 +9,13 @@ object Euler109 extends Euler {
     val sol =
         for {
         d1 <- fields
-        d2 <- fields
-        d3 <- fields
+        d2 <- fields if d1._2 <= d2._2
+        d3 <- fields if d3._3
         sum = d1._2 + d2._2 + d3._2
-        if (sum < 100 && d3._3 && d1._2 <= d2._2 && (d1._2 != d2._2 || d1._1 <= d2._1))
+        if (sum < 100 && (d1._2 != d2._2 || d1._1 <= d2._1))
 
     } yield (d1._1, d2._1, d3._1)
 
 
     val result = sol.size
-
 }

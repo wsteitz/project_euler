@@ -1,13 +1,10 @@
 
 package euler
 
+import Primes.isPrime
+
 
 object Euler050 extends Euler{
-
-    def isPrime(i: Int): Boolean =
-        if (i <= 1) false
-        else if (i <= 3) true
-        else (2 until math.sqrt(i).toInt + 1).forall(i % _ != 0)
 
     val limit = 1000000
     val primes = (2 to limit).filter(isPrime).toList

@@ -63,5 +63,5 @@ object Euler054 extends Euler {
                              .map(l => (Hand(l(0)), Hand(l(1))))
                              .toList
 
-   val result = hands.filter(h => h._1.beats(h._2)).size
+   val result = hands.count(h => h._1.beats(h._2))
 }

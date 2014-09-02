@@ -60,5 +60,4 @@ object Euler028 extends Euler{
 
     val result = (0 until n).map(i => matrix(i)(i) + matrix(i)(n - i - 1)).sum - 1
 
-
 }

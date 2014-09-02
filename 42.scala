@@ -13,8 +13,8 @@ object Euler042 extends Euler {
     def isTriangleWord(s: String) = triangles contains wordValue(s)
 
     def input = scala.io.Source.fromFile("data/p042_words.txt")
-    val words = input.getLines.mkString.split(",").map(_.replace("\"", "")).toList
+    val words = input.getLines.mkString.split(",").map(_.replace("\"", ""))
 
-    val result = words.filter(isTriangleWord).size
+    val result = words.count(isTriangleWord)
 
 }

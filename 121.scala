@@ -12,7 +12,7 @@ object Euler121 extends Euler {
 
 
     def chanceOfLoss(rounds: Int) = {
-        val goal = rounds / 2 +1
+        val goal = rounds / 2 + 1
       (for {
         g <- goal to rounds
         r = rounds - g

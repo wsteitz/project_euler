@@ -14,7 +14,6 @@ object Euler031 extends Euler {
           coins.flatMap(c => if (c<=rest && (sol.size == 0 || c<=sol.head)) split(rest - c, c +: sol) else Nil)
     }
 
-    val res = split(200, List())
+    val result = split(200, List()).size
 
-    val result = res.size
 }

@@ -8,5 +8,4 @@ object Euler040 extends Euler {
     val result = (1 to 6).map(math.pow(10, _).toInt)
                          .map(d(_).asDigit).product
 
-
 }

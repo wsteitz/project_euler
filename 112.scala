@@ -7,8 +7,8 @@ object Euler112 extends Euler{
         s != s.sorted && s != s.sorted.reverse
     }
 
-    def check(n: Int, count: Int): Unit = {
-        if ((count.toDouble / n) >= 0.99) println(n)
+    def check(n: Int, count: Int): Int = {
+        if ((count.toDouble / n) >= 0.99) n
         else check(n + 1, count + (if (isBouncy(n + 1)) 1 else 0))
     }
 

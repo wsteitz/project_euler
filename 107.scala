@@ -13,14 +13,12 @@ object Euler107 extends Euler {
 
     def mst(tree: Set[Int]): List[(Int, Int, Int)] = {
         if (tree.size != 40) {
-
             val next1 = distances.filter(elem => tree.contains(elem._1) != tree.contains(elem._2))
             val next = next1.sortBy(_._3).head
             next :: mst(tree + next._1 + next._2)
         }
         else Nil
     }
-
 
     val res = mst(Set(0))
     val result = distances.map(_._3).sum - res.map(_._3).sum

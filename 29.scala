@@ -7,5 +7,5 @@ object Euler029 extends Euler{
     val result = (for {
                     a <- ns
                     b <- ns
-                } yield BigInt(a).pow(b)).distinct.sorted.size
+                } yield BigInt(a).pow(b)).distinct.size
 }

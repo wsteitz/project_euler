@@ -18,7 +18,6 @@ object Euler067 extends Euler {
             doit(d.tail, d.head.zip(acc).map(t => t._1 + t._2).sliding(2).toList.map(_.max))
     }
 
-
     val result = doit(data, List.fill(data.size)(0))
 
 }

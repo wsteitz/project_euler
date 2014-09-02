@@ -25,11 +25,7 @@ object Euler057 extends Euler {
         if (iter == 0) BigFraction(0, 0)
         else BigFraction(1, 1) / (calc(iter - 1) + 2)
 
-
     val result = (1 to 1000).map(calc(_) + 1)
-                            .filter(bf => bf.numerator.toString.size >
+                            .count(bf => bf.numerator.toString.size >
                                           bf.denominator.toString.size)
-                            .size
-
-
 }
