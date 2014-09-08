@@ -11,7 +11,18 @@ object Primes {
          else (2 to math.sqrt(n).toInt).forall(n % _ != 0)
   }
 
-  val primes = 2 +: (3 to 1000000 by 2).filter(isPrime).toList
+   def primesSieve(): Stream[Int] = {
+       lazy val ps = 2 #:: sieve(3)
+       def sieve(p: Int): Stream[Int] = {
+           p #:: sieve(
+                Stream.from(p + 2, 2).
+                 find(i=> ps.takeWhile(j => j * j <= i).
+                         forall(i % _ > 0)).get)
+        }
+      ps
+  }
+
+  val primes = primesSieve().takeWhile(_ < 1000000)
 
   def primeFactors(number: Int) = {
 
