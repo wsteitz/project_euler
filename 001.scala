@@ -1,4 +1,3 @@
-
 package euler
 
 object Euler001 extends Euler {

@@ -22,8 +22,7 @@ abstract class Euler {
     def result :Any
 
     def main(args: Array[String]) {
-        println("result\t" + result)
         println("time\t" + timingToString(System.nanoTime - startTime))
-
+        println("result\t" + result)
     }
 }
