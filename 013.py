@@ -1,5 +1,5 @@
 
-with open('13.dat', 'r') as fin:
+with open('data/13.dat', 'r') as fin:
     res = 0
     for row in fin:
         res += int(row)

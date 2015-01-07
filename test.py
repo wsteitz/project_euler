@@ -5,16 +5,24 @@ import time
 import termcolor
 
 
-results = {'001': '233168',
-           '002': '4613732',
-           '004': '906609',
-           '006': '25164150',
-           '007': '104743',
-           '008': '23514624000',
-           '009': '31875000',
-           '010': '142913828922',
-           '011': '70600674',
-           '012': '76576500',
+results = { 1: '233168',
+            2: '4613732',
+            4: '906609',
+            6: '25164150',
+            7: '104743',
+            8: '23514624000',
+            9: '31875000',
+           10: '142913828922',
+           11: '70600674',
+           12: '76576500',
+           13: '5537376230',
+           14: '837799',
+           15: '137846528820',
+           16: '1366',
+           17: '21124',
+           18: '1074',
+           19: '171',
+           20: '648',
            }
 SLOW_THRESHOLD = 10
 
@@ -70,7 +78,7 @@ def main():
     solutions = [f for f in filenames if is_number((f.split('.')[0]))]
     stats = []
 
-    for sol in sorted(solutions)[:10]:
+    for sol in sorted(solutions):
         number, lang = sol.split('.')
         if lang == 'py':
             command = 'python %s' % sol
@@ -88,7 +96,7 @@ def main():
             continue
         elapsed = (time.time() - start)
         result = parse_result(raw_result)
-        success = results[number] == result if number in results else None
+        success = results[int(number)] == result if int(number) in results else None
         print_row(sol, success, elapsed)
         stats.append([number, lang, success, elapsed])
 

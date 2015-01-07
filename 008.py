@@ -19,10 +19,10 @@ num = "7316717653133062491922511967442657474235534919493496983520312774506326239
 71636269561882670428252483600823257530420752963450"
 
 maximum = 0
-for i in range(len(num)-5):
+n = 13
+for i in range(len(num) - n):
     res = 1
-    print i, num[i:i+5]
-    for d in num[i:i+5]:
+    for d in num[i:i + n]:
         res *= int(d)
     if res > maximum:
         maximum = res
