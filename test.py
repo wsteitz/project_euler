@@ -3,6 +3,7 @@ import os
 import subprocess
 import time
 import termcolor
+import argparse
 
 
 results = { 1: '233168',
@@ -72,14 +73,17 @@ def print_stats(stats):
     print "{: <12} {}s".format('total time', "%0.2f" % tot_time)
     print "{: <12} {}s".format('avg time', "%0.2f" % (tot_time / len(stats)))
 
-def main():
-    setup()
+def main(problem_number):
     filenames = os.listdir(".")
     solutions = [f for f in filenames if is_number((f.split('.')[0]))]
     stats = []
 
     for sol in sorted(solutions):
         number, lang = sol.split('.')
+        if (problem_number is not None
+            and int(number) != int(problem_number)):
+            continue
+
         if lang == 'py':
             command = 'python %s' % sol
         elif lang == 'scala':
@@ -103,6 +107,12 @@ def main():
     print_stats(stats)
 
 
-
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('problem_number', nargs='?', default=None)
+    parser.add_argument('--nosetup', action='store_true', default=False)
+    args = parser.parse_args()
+
+    if not args.nosetup:
+        setup()
+    main(args.problem_number)
