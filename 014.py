@@ -1,18 +1,21 @@
-maximum = 0
-max_start = 0
 
-for start in range(2, 1000000):
-    count = 1
-    n = start
-    while n>1:
-        count += 1
-        if n % 2 == 0:
-            n /= 2
-        else:
-            n = 3 * n + 1
-    if count > maximum:
-        maximum = count
-        max_start = start
+def collatz(n):
+    if n <= 1:
+        return 1
+    elif n % 2 == 0:
+        return n // 2
+    else:
+        return 3 * n + 1
 
 
-print max_start, maximum
+def collatz_length(n):
+    length = 1
+    next_val = collatz(n)
+    while n != 1:
+        n = collatz(n)
+        length += 1
+    return length
+
+
+limit = 1000000
+print max([(collatz_length(n), n) for n in range(limit)])[1]
