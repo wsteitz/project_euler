@@ -1,21 +1,21 @@
 
+
+
 def collatz(n):
-    if n <= 1:
-        return 1
-    elif n % 2 == 0:
-        return n // 2
-    else:
-        return 3 * n + 1
+    if not n in mem:
+        if n % 2 == 0:
+            mem[n] = collatz(n // 2) + 1
+        else:
+            mem[n] = collatz(3 * n + 1) + 1
+    return mem[n]
 
+mem = {1: 1}
+current_max = 0
+res = 0
+for i in range(1000000, 1, -1):
+    cl = collatz(i)
+    if cl > current_max:
+        current_max = cl
+        res = i
 
-def collatz_length(n):
-    length = 1
-    next_val = collatz(n)
-    while n != 1:
-        n = collatz(n)
-        length += 1
-    return length
-
-
-limit = 1000000
-print max([(collatz_length(n), n) for n in range(limit)])[1]
+print res
