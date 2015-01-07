@@ -1,7 +1,7 @@
 package euler
 
 object Euler024 extends Euler {
-
-    val result = List(0,1,2,3, 4, 5, 6 ,7, 8, 9).permutations.take(1000000).mkString.size
+    val n = 1000000
+    val result = (0 to 9).permutations.drop(n - 1).next.mkString
 
 }

@@ -25,5 +25,5 @@ for i in range(1, 1001):
     print i, print_number(i)
     count += len(print_number(i).replace(" ", ""))
 
+print print_number(1000)
 print count
-print print_number(1000 )

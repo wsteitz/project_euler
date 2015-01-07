@@ -10,6 +10,6 @@ object Euler026 extends Euler {
     }
 
     val result = (1 to 1000).map(n => (n, cycleLength(1.0, n, List())))
-               .sortBy(_._2).reverse.head
+               .sortBy(_._2).reverse.head._1
 
 }
