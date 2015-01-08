@@ -1,17 +1,15 @@
 package euler
 
+import Primes.primesSieve
+
+
 object Euler046 extends Euler {
 
 
-    def isPrime(i: Int): Boolean =
-        if (i <= 1) false
-        else if (i <= 3) true
-        else (2 until math.sqrt(i).toInt + 1).forall(i % _ != 0)
-
-
     val limit = 10000
-    val primes = (1 to limit).filter(isPrime).toSet
-    val composites = (1 to limit by 2).filter(!primes.contains(_))
+    val primes = primesSieve().takeWhile(_ < limit).toSet
+
+    val composites = (3 to limit by 2).filterNot(primes.contains)
 
     def goldbach =
         (for {
@@ -19,8 +17,5 @@ object Euler046 extends Euler {
             n <- (1 to 100)
         } yield p + 2 * n * n).toSet
 
-
-
-    val result = composites.filter(!goldbach.contains(_))
-
+    val result = composites.filterNot(goldbach.contains).min
 }

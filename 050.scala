@@ -23,6 +23,6 @@ object Euler050 extends Euler{
         }
     }
 
-    val result = findPrimSums(primes.take(1000), List()).maxBy(_._2)
+    val result = findPrimSums(primes.take(1000), List()).maxBy(_._2)._1
 
 }

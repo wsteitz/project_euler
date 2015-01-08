@@ -4,7 +4,7 @@ package euler
 import Tools.gcd
 
 
-object Euler073 extends Euler {
+object Euler071 extends Euler {
 
     val result = (for {
         d <- 3 to 12000
