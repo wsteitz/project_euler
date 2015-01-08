@@ -22,7 +22,7 @@ object Primes {
       ps
   }
 
-  val primes = primesSieve().takeWhile(_ < 1000000)
+  lazy val primes = primesSieve().takeWhile(_ < 1000000)
 
   def primeFactors(number: Int) = {
 

@@ -6,12 +6,17 @@ object Euler044 extends Euler {
 
     val ps = (1 to 10000).map(pentagonal).toSet
 
+    println("got ps")
+
     val result = (for {
         a <- ps
         b <- ps
-        if a < b &&
-           ps.contains(a + b) &&
-           ps.contains(b - a)
-          } yield b - a).min
+        if a < b } yield (a, b))
+        .find(t =>
+           ps.contains(t._1 + t._2) &&
+           ps.contains(t._2 - t._1)
+          )
+
+
 
 }
