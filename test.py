@@ -4,67 +4,34 @@ import subprocess
 import time
 import termcolor
 import argparse
+import urllib2
 
 
-results = { 1: '233168',
-            2: '4613732',
-            4: '906609',
-            6: '25164150',
-            7: '104743',
-            8: '23514624000',
-            9: '31875000',
-           10: '142913828922',
-           11: '70600674',
-           12: '76576500',
-           13: '5537376230',
-           14: '837799',
-           15: '137846528820',
-           16: '1366',
-           17: '21124',
-           18: '1074',
-           19: '171',
-           20: '648',
-           21: '31626',
-           22: '871198282',
-           23: '4179871',
-           24: '2783915460',
-           25: '4782',
-           26: '983',
-           27: '-59231',
-           28: '669171001',
-           29: '9183',
-           30: '443839',
-           31: '73682',
-           32: '45228',
-           33: '100',
-           34: '40730',
-           35: '55',
-           36: '872187',
-           37: '748317',
-           38: '932718654',
-           39: '840',
-           40: '210',
-           41: '7652413',
-           42: '162',
-           44: '5482660',
-           45: '1533776805',
-           46: '5777',
-           47: '134043',
-           48: '9110846700',
-           49: '296962999629',
-           50: '997651',
-           51: '121313',
-           52: '142857',
-           53: '4075',
-           54: '376',
-           55: '249',
-           56: '972',
-           57: '153',
-           58: '26241',
-           59: '107359',
-           60: '26033',
-           }
 SLOW_THRESHOLD = 10
+
+
+def get_results():
+    url = "https://code.google.com/p/projecteuler-solutions/wiki/ProjectEulerSolutions"
+    data = urllib2.urlopen(url).read()
+    # realy lame way to parse the html.. it works
+    filtered = data[data.find("1. "):data.find("</p><p></pre> </p>")]
+
+    items = [s.strip().split(" ") for s in filtered.replace(".", "").split("\n")]
+    items = [item for item in items if len(item) == 2]
+    with open("results.csv", 'w') as fout:
+        for num, value in items:
+            print >> fout, ",".join([num, value.strip().replace(",", "")])
+
+
+def load_results():
+    if not os.path.exists("results.csv"):
+        get_results()
+    results = {}
+    with open("results.csv") as fin:
+        for row in fin:
+            num, res = row.strip().split(",")
+            results[int(num)] = res
+    return results
 
 
 def is_number(s):
@@ -76,8 +43,8 @@ def is_number(s):
 
 
 def setup():
-    print "compiling scala sources"
-    subprocess.call("sbt compile", shell=True)
+    print "compiling and packaging scala sources"
+    subprocess.call(["sbt", "assembly"])
 
 
 def parse_result(raw):
@@ -112,7 +79,9 @@ def print_stats(stats):
     print "{: <12} {}s".format('total time', "%0.2f" % tot_time)
     print "{: <12} {}s".format('avg time', "%0.2f" % (tot_time / len(stats)))
 
+
 def main(problem_number):
+    results = load_results()
     filenames = os.listdir(".")
     solutions = [f for f in filenames if is_number((f.split('.')[0]))]
     stats = []
@@ -124,20 +93,24 @@ def main(problem_number):
             continue
 
         if lang == 'py':
-            command = 'python %s' % sol
+            command = ['python', sol]
         elif lang == 'scala':
-            command = 'scala -cp target/scala-2.10/classes euler.Euler%s' % number
+            #command = ['scala', '-cp', 'target/scala-2.10/classes',  'euler.Euler%s' % number]
+            # use jar, because that includes the scala version used by sbt
+            command = ['java',
+                       '-cp', 'target/scala-2.10/euler-assembly-0.1.jar',
+                       'euler.Euler%s' % number]
         else:
             print "WARNING unknown language", lang
             continue
 
         start = time.time()
         try:
-            raw_result = subprocess.check_output(command, shell=True)
+            raw_result = subprocess.check_output(command)
         except subprocess.CalledProcessError:
             print "ERROR failed to run", sol
             continue
-        elapsed = (time.time() - start)
+        elapsed = time.time() - start
         result = parse_result(raw_result)
         success = results[int(number)] == result if int(number) in results else None
         print_row(sol, success, elapsed)
