@@ -6,14 +6,13 @@ import Memoize._
 
 object Euler092 extends Euler {
 
-  lazy val numberChain: Int => Int = memoize{
-        n => n match {
-           case 1 => 1
-           case 89 => 89
-           case n => numberChain(digits(n).map(d => d * d).sum)
-       }
+
+  lazy val numberChain: Int => Boolean = memoize{
+    n => if (n == 1) false
+         else if (n == 89) true
+         else numberChain(digits(n).map(d => d * d).sum)
   }
 
-  def result = (1 to 10000000).count(numberChain(_) == 89)
+  val result = (1 to 10000000).count(numberChain)
 
 }

@@ -8,7 +8,7 @@ import scala.io.Source
 
 object Euler067 extends Euler {
 
-    val data = Source.fromFile("p067_triangle.txt").getLines.map(_.split(" ").map(_.toInt).toList).toList.reverse
+    val data = Source.fromFile("data/p067_triangle.txt").getLines.map(_.split(" ").map(_.toInt).toList).toList.reverse
 
 
     def doit(d: List[List[Int]], acc: List[Int]): Int = {

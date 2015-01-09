@@ -1,14 +1,9 @@
 package euler
 
+import Primes.isPrime
+
 
 object Euler060 extends Euler {
-
-
-    def isPrime(i: Int): Boolean =
-        if (i <= 1) false
-        else if (i <= 3) true
-        else (2 until math.sqrt(i).toInt + 1).forall(i % _ != 0)
-
 
     val primes = (3 to 10000).filter(isPrime)
     val n = 5
@@ -52,5 +47,5 @@ object Euler060 extends Euler {
 
 
     val result = res.map(_.sum).min
-    
+
 }

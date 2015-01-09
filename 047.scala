@@ -19,11 +19,11 @@ object Euler047 extends Euler {
     val result = ( for {
             i <- 5 to 200000 - len
             nums = (0 until len).map(i + _)
-             if nums.forall(n => !isPrime(n)) &&
+             if nums.forall(!isPrime(_)) &&
                 nums.forall(factors(_).size == len) &&
                 nums.combinations(2)
                     .forall(c => factors(c(0)).intersect(factors(c(1))).size == 0)
               }
-             yield nums).take(10)
+             yield nums).head.head
 
 }

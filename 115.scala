@@ -20,6 +20,6 @@ object Euler115 extends Euler{
 
     val m = 50
     val limit = 1000000
-    val result = (0 to 1000).find(n => countPermutations(m, n) > limit)
+    val result = (0 to 1000).find(n => countPermutations(m, n) > limit).getOrElse("")
 }
 

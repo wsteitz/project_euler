@@ -1,13 +1,13 @@
 
 package euler
 
-import Primes._
+import Primes.isPrime
 import Memoize._
 
 
 object Euler077 extends Euler {
 
-    val primes = (1 to 100000 by 2).filter(isPrime)
+    val primes = (1 to 100000).filter(isPrime)
 
     lazy val count: (Int, Int) => Int = Memoize.memoize{
         (n, last) => {
@@ -17,7 +17,7 @@ object Euler077 extends Euler {
         }
     }
 
-    val result = (1 to 10000).find(n => count(n, n) > 5000)
+    val result = (1 to 10000).find(n => count(n, n) > 5000).getOrElse("")
 
 }
 

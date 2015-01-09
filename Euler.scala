@@ -19,10 +19,10 @@ abstract class Euler {
     // used to track the overall time
     val startTime = System.nanoTime
 
-    def result :Any
+    def result: Any
 
     def main(args: Array[String]) {
         println("time\t" + timingToString(System.nanoTime - startTime))
-        println("result\t" + result)
+        println("result\t" + result.toString.replace(".", ""))
     }
 }

@@ -1,10 +1,9 @@
-
 package euler
 
 import Tools.gcd
 
 
-object Euler071 extends Euler {
+object Euler073 extends Euler {
 
     val result = (for {
         d <- 3 to 12000
@@ -12,5 +11,3 @@ object Euler071 extends Euler {
         if gcd(d, n) == 1 && n.toDouble / d > 1.0 / 3
     } yield 1).sum
 }
-
-
