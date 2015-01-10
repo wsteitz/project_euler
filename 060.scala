@@ -8,22 +8,19 @@ object Euler060 extends Euler {
     val primes = (3 to 10000).filter(isPrime)
     val n = 5
 
-
     def isPrimeSeqValid(a: Int, b: Int): Boolean = {
         val sa = a.toString
         val sb = b.toString
         isPrime((sa + sb).toInt) && isPrime((sb + sa).toInt)
     }
 
-
-    val validMap = primes.map(a => (a, primes.filter(b => isPrimeSeqValid(a, b))))
-                         .toMap
+    val validMap = primes.map(a => (a, primes.filter(b => isPrimeSeqValid(a, b)))).toMap
 
     val res2 = (for {
             a <- validMap.keys
             b <- validMap(a)
             if a < b
-            } yield (List(a, b).sorted, validMap(a).intersect(validMap(b))))
+            } yield (List(a, b), validMap(a).intersect(validMap(b))))
          .filter(_._2.size >= n - 2)
          .toMap
 

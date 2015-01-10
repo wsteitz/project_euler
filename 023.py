@@ -1,4 +1,5 @@
 import math
+
 abundant = []
 limit = 28123
 

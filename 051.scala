@@ -1,16 +1,11 @@
-
 package euler
 
-import Primes._
+import Primes.isPrime
 
 
 object Euler051 extends Euler {
 
-    val limit = 1000000
-
-    val primes = (3 to limit by 2).filter(isPrime).toSet
-
-    def countOnes(i: Int) = i.toString.filter(_ == '1').size
+    def hasOnes(i: Int) = i.toString.contains('1')
 
     def getPrimes(i: Int) = {
         val s = i.toString
@@ -18,19 +13,12 @@ object Euler051 extends Euler {
         for {
             i <- pos
             n = s.replace('1', i).toInt
-            if primes.contains(n)
+            if isPrime(n)
         } yield n
     }
 
-    // generates all possible masks and filters those that generate enough primes
-    val prime_groups = for {
-        i <- 10 to limit
-        if i % 2 != 0 &&
-           i.toString.head.asDigit <= 2 &&
-           countOnes(i) > 0 &&
-           getPrimes(i).size >= 8}
-        yield i
+    def criteria(i: Int): Boolean =
+        i % 2 != 0 && i.toString.head.asDigit <= 2 && hasOnes(i) && getPrimes(i).size >= 8
 
-
-    val result = getPrimes(prime_groups.min).min
+    val result = Stream.from(10).find(criteria).get
 }

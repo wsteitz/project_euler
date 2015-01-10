@@ -7,17 +7,15 @@ object Euler037 extends Euler {
 
     def truncations(i: Int) =
         (1 to i.toString.size).flatMap(multiplier => {
-        val help = math.pow(10, multiplier).toInt
-        List(i % help, i / help)
+            val help = math.pow(10, multiplier).toInt
+            List(i % help, i / help)
         }).filter(_ > 0).distinct
 
 
-    def isTruncatablePrime(i: Int): Boolean = {
-        truncations(i).forall(isPrime)
-    }
+    def isTruncatablePrime(i: Int): Boolean = truncations(i).forall(isPrime)
 
     val n = 1000000
 
-    val result = (10 to n).filter(isTruncatablePrime(_)).sum
+    val result = (10 to n).filter(isTruncatablePrime).sum
 
 }

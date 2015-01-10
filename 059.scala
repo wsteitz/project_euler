@@ -1,4 +1,3 @@
-
 package euler
 
 
@@ -16,7 +15,6 @@ object Euler059 extends Euler {
         val encoded = decode(text, pass)
         val grouped = encoded.map(_.toChar).groupBy(identity)
                 .mapValues(_.size.toDouble / text.size)
-
         grouped.map(t => math.abs(freq(t._1) - t._2)).sum
     }
 
@@ -38,8 +36,6 @@ object Euler059 extends Euler {
         if code1 != code2 && code1 != code3 &&  code2 != code3
     } yield List(code1, code2, code3)
 
-    val best_fit = candidates.map(c => (c, freqFit(text, c))).minBy(_._2)
-
-    val result = decode(text, best_fit._1).sum
-
+    val best_fit = candidates.map(c => (c, freqFit(text, c))).minBy(_._2)._1
+    val result = decode(text, best_fit).sum
 }
