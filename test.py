@@ -98,7 +98,7 @@ def main(problem_number):
             #command = ['scala', '-cp', 'target/scala-2.10/classes',  'euler.Euler%s' % number]
             # use jar, because that includes the scala version used by sbt
             command = ['java',
-                       '-cp', 'target/scala-2.10/euler-assembly-0.1.jar',
+                       '-cp', 'target/scala-2.11/euler-assembly-0.1.jar',
                        'euler.Euler%s' % number]
         else:
             print "WARNING unknown language", lang
