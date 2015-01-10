@@ -1,18 +1,15 @@
 This repository contains my solutions to [Project Euler](projecteuler.net). Solutions are implemented
-using Python and / or Scala.
+using python and / or scala.
 
 
 If, for whatever reason, you want to run this code, simply type
-        python test.py
+
+    python test.py
+
+    or
+
+    python test.py <solution number>
 
 
-python requirements
-====================
-python >= 2.7.0
-termcolor
-
-
-scala requirements
-==================
-sbt >= 0.13.5
-
+To run the python code you need python >= 2.7.0 and the termcolor package. The scala code
+only needs a recent version of sbt (>=0.13.5)
