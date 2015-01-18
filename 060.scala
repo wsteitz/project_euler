@@ -26,23 +26,22 @@ object Euler060 extends Euler {
 
     val res3 = (for {
             as <- res2.keys
+            tail = as.reverse.head
             b <- res2(as)
-            if b > as.reverse.head
+            if b > tail
             } yield (as :+ b, res2(as).intersect(validMap(b))))
         .filter(_._2.size >= n - 3)
         .toMap
 
     val res4 = (for {
             as <- res3.keys
+            tail = as.reverse.head
             b <- res3(as)
-            if b > as.reverse.head
+            if b > tail
             } yield (as :+ b, res3(as).intersect(validMap(b))))
         .filter(_._2.size >= n - 4)
         .toMap
 
     val res = res4.map(t => t._1 :+ t._2.head)
-
-
     val result = res.map(_.sum).min
-
 }
