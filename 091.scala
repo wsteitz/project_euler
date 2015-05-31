@@ -16,12 +16,11 @@ object Euler091 extends Euler {
     val result = (for {
         x1 <- 0 to size
         y1 <- 0 to size
-        a = distance(x1, y1, 0, 0)
         x2 <- x1 to size
         y2 <- 0 to size
         if (x1 < x2 || y1 < y2) && x1 + y1 != 0
+        a = distance(x1, y1, 0, 0)
         b = distance(x2, y2, 0, 0)
         c = distance(x1, y1, x2, y2)
-        if isSolution(List(a, b, c))
-    } yield 1).size
+    } yield List(a, b, c)).count(isSolution)
 }

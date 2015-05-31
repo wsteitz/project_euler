@@ -1,11 +1,12 @@
 package euler
 
 import Primes.isPrime
+import Primes.primesSieve
 
 
 object Euler060 extends Euler {
 
-    val primes = (3 to 10000).filter(isPrime)
+    val primes = primesSieve().takeWhile(_ < 10000)
     val n = 5
 
     def isPrimeSeqValid(a: Int, b: Int): Boolean = {

@@ -1,13 +1,10 @@
-
 package euler
 
 
 object Euler098 extends Euler {
 
-
     val input = scala.io.Source.fromFile("data/p098_words.txt")
-    val words = input.getLines.flatMap(_.split(","))
-                .map(_.replace("\"", "")).toList
+    val words = input.getLines.flatMap(_.split(",")).map(_.replace("\"", "")).toList
 
     val anagrams = for {
             w1 <- words
