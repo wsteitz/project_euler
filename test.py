@@ -4,28 +4,12 @@ import subprocess
 import time
 import termcolor
 import argparse
-import urllib2
 
 
 SLOW_THRESHOLD = 10
 
 
-def get_results():
-    url = "https://code.google.com/p/projecteuler-solutions/wiki/ProjectEulerSolutions"
-    data = urllib2.urlopen(url).read()
-    # realy lame way to parse the html.. it works
-    filtered = data[data.find("1. "):data.find("</p><p></pre> </p>")]
-
-    items = [s.strip().split(" ") for s in filtered.replace(".", "").split("\n")]
-    items = [item for item in items if len(item) == 2]
-    with open("results.csv", 'w') as fout:
-        for num, value in items:
-            print >> fout, ",".join([num, value.strip().replace(",", "")])
-
-
 def load_results():
-    if not os.path.exists("results.csv"):
-        get_results()
     results = {}
     with open("results.csv") as fin:
         for row in fin:
