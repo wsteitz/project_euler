@@ -1,3 +1,7 @@
+from math import factorial
+from functools import reduce
+
+
 def memodict(f):
     """ Memoization decorator for a function taking a single argument """
     class memodict(dict):
@@ -30,3 +34,32 @@ def prime_sieve(n):
             sieve[((k * k) / 3) :: 2 * k] = [False] * ((n/6-(k*k)/6-1)/k+1)
             sieve[(k*k+4*k-2*k*(i&1))/3::2*k]=[False]*((n/6-(k*k+4*k-2*k*(i&1))/6-1)/k+1)
     return [2,3] + [3*i+1|1 for i in xrange(1,n/3-correction) if sieve[i]]
+
+
+
+def binomial(x, y):
+    try:
+        binom = factorial(x) // factorial(y) // factorial(x - y)
+    except ValueError:
+        binom = 0
+    return binom
+
+
+def factors(n):
+    return set(reduce(list.__add__,
+                ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
+
+def prime_factors(n):
+    for p in prime_sieve(n + 1):
+        while n % p == 0:
+            yield p
+            n = n // p
+            if n==1: return
+
+def gcd(a,b):
+    c = 1
+    while (b):
+        c = b
+        b = a % b
+        a = c
+    return a
